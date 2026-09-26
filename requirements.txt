@@ -1,0 +1,2 @@
+# NumPy reference model and BRAM image generation (03-mlp-accelerator/reference)
+numpy>=1.24
