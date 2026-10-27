@@ -1,0 +1,2 @@
+# The FP32 and MLP reference models (01-fp32-multiplier/reference, 03-mlp-accelerator/reference)
+numpy>=1.24
