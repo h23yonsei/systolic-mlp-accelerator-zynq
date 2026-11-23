@@ -1,0 +1,24 @@
+name: checks
+
+# Re-runs every verification result in the repository with Icarus Verilog and Verilator on every
+# push: the NumPy reference, the BRAM image, the FP32 test vectors, and the three testbenches.
+on:
+  push:
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install Icarus Verilog, Verilator and NumPy
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y iverilog verilator
+          pip install -r requirements.txt
+      - name: All checks
+        run: python tools/run_sims.py --sim oss
